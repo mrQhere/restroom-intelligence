@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 560" width="980" height="560">
+  <rect width="980" height="560" rx="24" fill="#f8f9fc"/>
+  <text x="490" y="38" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="20" font-weight="700" fill="#1c1c1e" text-anchor="middle">Complete Hardware Connection Diagram (Arduino UNO + NodeMCU ESP8266)</text>
+  <text x="490" y="60" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12.5" fill="#6e6e73" text-anchor="middle">All sensors, I2C bus, interrupt flow meter, 5V-to-3.3V UART divider, and SPI MicroSD wiring</text>
+  <g font-family="-apple-system, sans-serif" font-size="12" fill="#1c1c1e">
+    <rect x="30" y="85" width="230" height="54" rx="12" fill="#fff" stroke="#ff9500" stroke-width="2"/>
+    <text x="45" y="108" font-weight="700">MQ-135 Air Sensor</text>
+    <text x="45" y="126" fill="#6e6e73">AO → A0 · VCC 5V · GND</text>
+    <rect x="30" y="152" width="230" height="54" rx="12" fill="#fff" stroke="#007aff" stroke-width="2"/>
+    <text x="45" y="175" font-weight="700">Water Level Probe</text>
+    <text x="45" y="193" fill="#6e6e73">S → A1 · VCC 5V · GND</text>
+    <rect x="30" y="219" width="230" height="54" rx="12" fill="#fff" stroke="#00c7be" stroke-width="2"/>
+    <text x="45" y="242" font-weight="700">YF-S201 / ZJ-S201 Flow</text>
+    <text x="45" y="260" fill="#6e6e73">SIG → D3 (INT1) · 5V · GND</text>
+    <rect x="30" y="286" width="230" height="54" rx="12" fill="#fff" stroke="#34c759" stroke-width="2"/>
+    <text x="45" y="309" font-weight="700">HC-SR04 Ultrasonic</text>
+    <text x="45" y="327" fill="#6e6e73">TRIG → D5 · ECHO → D6</text>
+    <rect x="30" y="353" width="230" height="54" rx="12" fill="#fff" stroke="#5856d6" stroke-width="2"/>
+    <text x="45" y="376" font-weight="700">16x2 LCD + DS3231 RTC</text>
+    <text x="45" y="394" fill="#6e6e73">Shared I2C: SDA→A4 · SCL→A5</text>
+    <rect x="30" y="420" width="230" height="54" rx="12" fill="#fff" stroke="#ff3b30" stroke-width="2"/>
+    <text x="45" y="443" font-weight="700">Relay (Fan) + Switches</text>
+    <text x="45" y="461" fill="#6e6e73">IN→D4 · Mode→D9 · Reset→D2</text>
+  </g>
+  <rect x="340" y="110" width="220" height="340" rx="20" fill="#007aff"/>
+  <text x="450" y="150" font-family="-apple-system, sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle">Arduino UNO</text>
+  <text x="450" y="170" font-family="-apple-system, sans-serif" font-size="12" fill="#d9ebff" text-anchor="middle">ATmega328P (5V Logic)</text>
+  <g font-family="monospace" font-size="12" fill="#fff">
+    <text x="360" y="208">A0  MQ-135 AO</text>
+    <text x="360" y="232">A1  Water Probe</text>
+    <text x="360" y="256">D3  Flow INT1</text>
+    <text x="360" y="280">D5/D6 HC-SR04</text>
+    <text x="360" y="304">A4/A5 I2C Bus</text>
+    <text x="360" y="328">D4  Relay (LOW=ON)</text>
+    <text x="360" y="366" fill="#ffd60a" font-weight="700">D7  UART TX (5V) →</text>
+    <text x="360" y="394" fill="#a8ffbe" font-weight="700">D8  UART RX ←</text>
+    <text x="360" y="426">GND Common Bus</text>
+  </g>
+  <g stroke="#8e8e93" stroke-width="2">
+    <line x1="260" y1="112" x2="340" y2="204"/>
+    <line x1="260" y1="179" x2="340" y2="228"/>
+    <line x1="260" y1="246" x2="340" y2="252"/>
+    <line x1="260" y1="313" x2="340" y2="276"/>
+    <line x1="260" y1="380" x2="340" y2="300"/>
+    <line x1="260" y1="447" x2="340" y2="324"/>
+  </g>
+  <line x1="560" y1="362" x2="600" y2="362" stroke="#ff9500" stroke-width="3"/>
+  <rect x="600" y="350" width="54" height="24" rx="5" fill="#ff9500"/>
+  <text x="627" y="366" font-family="monospace" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">1 kΩ</text>
+  <line x1="654" y1="362" x2="720" y2="362" stroke="#34c759" stroke-width="3"/>
+  <circle cx="678" cy="362" r="4" fill="#34c759"/>
+  <line x1="678" y1="362" x2="678" y2="386" stroke="#5856d6" stroke-width="2"/>
+  <rect x="650" y="386" width="56" height="22" rx="5" fill="#5856d6"/>
+  <text x="678" y="401" font-family="monospace" font-size="10.5" font-weight="700" fill="#fff" text-anchor="middle">2.2 kΩ</text>
+  <line x1="678" y1="408" x2="678" y2="424" stroke="#1c1c1e" stroke-width="2"/>
+  <line x1="560" y1="390" x2="640" y2="390" stroke="#34c759" stroke-width="2.5" stroke-dasharray="4 3"/>
+  <line x1="720" y1="390" x2="710" y2="390" stroke="#34c759" stroke-width="2.5"/>
+  <line x1="560" y1="424" x2="720" y2="424" stroke="#1c1c1e" stroke-width="3"/>
+  <text x="640" y="442" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="#1c1c1e" text-anchor="middle">Common GND</text>
+  <rect x="720" y="110" width="230" height="340" rx="20" fill="#246b68"/>
+  <text x="835" y="150" font-family="-apple-system, sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle">NodeMCU ESP8266</text>
+  <text x="835" y="170" font-family="-apple-system, sans-serif" font-size="12" fill="#c7f5f2" text-anchor="middle">ESP-12E (3.3V Logic)</text>
+  <g font-family="monospace" font-size="12" fill="#fff">
+    <text x="740" y="210" font-weight="700" fill="#ffd60a">MicroSD (SPI FAT32):</text>
+    <text x="740" y="234">D0 (GPIO16) → CS</text>
+    <text x="740" y="258">D5 (GPIO14) → SCK</text>
+    <text x="740" y="282">D6 (GPIO12) → MISO</text>
+    <text x="740" y="306">D7 (GPIO13) → MOSI</text>
+    <text x="740" y="366" fill="#a8ffbe" font-weight="700">← D1 (RX · 3.44V)</text>
+    <text x="740" y="394" fill="#a8ffbe" font-weight="700">→ D2 (TX · 3.3V)</text>
+    <text x="740" y="426">GND Common Bus</text>
+  </g>
+</svg>

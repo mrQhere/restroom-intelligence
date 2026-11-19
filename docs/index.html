@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Restroom Intelligence — Interactive Lab &amp; Architecture Guide</title>
+<style>
+  :root {
+    --bg: #fbfbfd;
+    --surface: #ffffff;
+    --surface-alt: #f5f5f7;
+    --ink: #1d1d1f;
+    --muted: #6e6e73;
+    --blue: #0071e3;
+    --indigo: #5e5ce6;
+    --green: #28cd41;
+    --orange: #ff9500;
+    --red: #ff3b30;
+    --radius: 28px;
+    --shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(251, 251, 253, 0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    padding: 14px 24px;
+  }
+  .nav-inner {
+    max-width: 1120px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav-title { font-weight: 700; font-size: 17px; letter-spacing: -0.3px; }
+  .nav-links { display: flex; gap: 22px; font-size: 13px; font-weight: 600; flex-wrap: wrap; }
+  .nav-links a { color: var(--muted); text-decoration: none; transition: color .2s; }
+  .nav-links a:hover { color: var(--blue); }
+
+  .hero {
+    max-width: 980px; margin: 0 auto; padding: 80px 24px 48px; text-align: center;
+  }
+  .eyebrow {
+    display: inline-block; font-size: 12.5px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 12px;
+  }
+  .hero h1 {
+    font-size: clamp(38px, 6vw, 66px); font-weight: 700; letter-spacing: -0.03em;
+    line-height: 1.05; margin-bottom: 20px;
+    background: linear-gradient(135deg, #1d1d1f 25%, #0071e3 75%, #5e5ce6 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero p {
+    font-size: clamp(17px, 2.1vw, 21px); color: var(--muted);
+    max-width: 740px; margin: 0 auto 32px;
+  }
+  .pill-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .spec-pill {
+    background: var(--surface); border: 1px solid rgba(0,0,0,0.08);
+    padding: 8px 16px; border-radius: 999px; font-size: 13px; font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  }
+
+  section { max-width: 1120px; margin: 0 auto; padding: 60px 24px; }
+  .sec-head { text-align: center; margin-bottom: 44px; }
+  .sec-head h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 700; letter-spacing: -0.02em; }
+  .sec-head p { font-size: 17px; color: var(--muted); max-width: 680px; margin: 10px auto 0; }
+
+  .flow-grid { display: grid; gap: 36px; }
+  .showcase-card {
+    background: var(--surface); border-radius: var(--radius); padding: 36px;
+    box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.05);
+    display: grid; grid-template-columns: 1fr 1.15fr; gap: 36px; align-items: center;
+  }
+  .showcase-card.reverse { grid-template-columns: 1.15fr 1fr; }
+  @media (max-width: 840px) {
+    .showcase-card, .showcase-card.reverse { grid-template-columns: 1fr; padding: 24px; }
+  }
+  .step-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0, 113, 227, 0.1); color: var(--blue);
+    padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .showcase-text h3 { font-size: 27px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; }
+  .showcase-text p { color: var(--muted); font-size: 15.5px; margin-bottom: 16px; }
+  .feature-list { list-style: none; display: grid; gap: 10px; }
+  .feature-list li {
+    font-size: 14.5px; padding-left: 22px; position: relative; color: #333336;
+  }
+  .feature-list li::before {
+    content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 700;
+  }
+
+  .visual-frame {
+    background: var(--surface-alt); border-radius: 22px; padding: 18px;
+    border: 1px solid rgba(0,0,0,0.06); text-align: center;
+  }
+  .visual-frame img {
+    max-width: 100%; max-height: 460px; width: auto; height: auto;
+    border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    display: inline-block;
+  }
+  .dual-shot {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center;
+  }
+  .dual-shot img { width: 100%; max-height: 360px; object-fit: contain; }
+
+  .insights-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 22px;
+  }
+  .insight-card {
+    background: var(--surface); border-radius: 24px; padding: 22px;
+    box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.05);
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .insight-card img {
+    width: 100%; border-radius: 16px; margin-bottom: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+  .insight-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+  .insight-card p { font-size: 14px; color: var(--muted); }
+
+  .wizard-strip {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px;
+    margin-top: 24px;
+  }
+  .wiz-item {
+    background: var(--surface); border-radius: 20px; padding: 12px;
+    box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.05); text-align: center;
+  }
+  .wiz-item img { width: 100%; border-radius: 12px; margin-bottom: 8px; }
+  .wiz-item span { font-size: 12px; font-weight: 700; color: var(--ink); display: block; }
+
+  .proto-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;
+    margin-top: 28px;
+  }
+  .proto-card {
+    background: var(--surface); border-radius: 22px; padding: 16px;
+    box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.05);
+  }
+  .proto-card img {
+    width: 100%; height: 240px; object-fit: cover; border-radius: 14px; margin-bottom: 12px;
+  }
+  .proto-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .proto-card p { font-size: 13px; color: var(--muted); }
+
+  .dark-band {
+    background: #111113; color: #f5f5f7; border-radius: 36px;
+    padding: 48px 36px; margin: 32px auto;
+  }
+  .dark-band h2 { font-size: 32px; letter-spacing: -0.02em; margin-bottom: 12px; }
+  .dark-band p { color: #a1a1a6; max-width: 720px; margin-bottom: 24px; }
+  .code-pill {
+    background: #1d1d1f; border: 1px solid #333336; border-radius: 16px;
+    padding: 18px 22px; font-family: ui-monospace, Menlo, monospace;
+    font-size: 13px; color: #30d158; overflow-x: auto;
+  }
+  footer { text-align: center; padding: 48px 24px; color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-title">Restroom Intelligence</div>
+    <div class="nav-links">
+      <a href="#experience">UI Flow</a>
+      <a href="#insights">Edge Insights</a>
+      <a href="#verify">12-Step Wizard</a>
+      <a href="#prototype">Physical Prototype</a>
+      <a href="#architecture">Architecture</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow">Microprocessor Lab · Dual-MCU Edge Analytics System</span>
+  <h1>Hygiene, Engineered.<br>Intelligence at the Edge.</h1>
+  <p>A deterministic Arduino UNO sensor controller paired with an ESP8266 Wi-Fi edge analytics gateway—serving a zero-CDN, iOS-inspired web dashboard with real-time cleanliness scoring, 12-step hardware verification, printable reports, and 24-hour analytics.</p>
+  <div class="pill-row">
+    <span class="spec-pill">ATmega328P + ESP8266</span>
+    <span class="spec-pill">100/100 Cleanliness Score</span>
+    <span class="spec-pill">24h Edge Correlation Insights</span>
+    <span class="spec-pill">12-Step Hardware Wizard</span>
+    <span class="spec-pill">CRC-8 UART v2 &amp; MicroSD</span>
+  </div>
+</header>
+
+<section id="experience">
+  <div class="sec-head">
+    <h2>The Website Experience, Step by Step</h2>
+    <p>Hosted completely offline at <code>http://192.168.4.1</code> (SSID: <strong>Restroom-Monitor</strong>) directly from ESP8266 flash memory.</p>
+  </div>
+
+  <div class="flow-grid">
+    <div class="showcase-card">
+      <div class="showcase-text">
+        <span class="step-badge">01 · Boot &amp; Calibration</span>
+        <h3>Animated Circuit Loading Screen</h3>
+        <p>Upon connecting to the gateway, an animated SVG schematic visualizes the UART link between the <strong>ATmega328P</strong> and <strong>ESP8266</strong> across the <code>1 kΩ / 2.2 kΩ</code> divider.</p>
+        <ul class="feature-list">
+          <li><strong>4-Stage Boot Sequence:</strong> Gateway link, UART handshake, MicroSD history restoration, and UI preparation.</li>
+          <li><strong>Guided Calibration &amp; Rule Config:</strong> Captures clean-air MQ-135 baseline, dry/wet tank span, zero-flow baseline, and adaptive cleaning limits.</li>
+        </ul>
+      </div>
+      <div class="visual-frame dual-shot">
+        <img src="images/ui/01_loading_boot.png" alt="Dual-MCU Boot Loading Screen">
+        <img src="images/ui/02_system_calibrated.png" alt="System Calibrated Modal">
+      </div>
+    </div>
+
+    <div class="showcase-card reverse">
+      <div class="visual-frame dual-shot">
+        <img src="images/ui/03_main_dashboard_100.png" alt="100 of 100 Cleanliness Ring">
+        <img src="images/ui/03b_home_poor_air_due_now.png" alt="Poor Air Alert and Cleaning Due Now">
+      </div>
+      <div class="showcase-text">
+        <span class="step-badge">02 · Main Home Screen</span>
+        <h3>100 / 100 Score &amp; Dynamic Fault/Air Alerts</h3>
+        <p>The Home screen centers around the <strong>0–100 Cleanliness Ring</strong> and adapts automatically to live sensor states—from <code>100 / 100 FRESH</code> to <code>35 / 100 Due now</code> or probe/air fault alerts.</p>
+        <ul class="feature-list">
+          <li><strong>Live Status Strip &amp; Alerts:</strong> Shows ATmega link, MicroSD logging, DS3231 RTC clock, Fan mode, Door state, and diagnostic banners.</li>
+          <li><strong>One-Tap Cleaning Reset:</strong> Records cleaning timestamps, before/after air index, and resets the cleanliness counter.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="showcase-card">
+      <div class="showcase-text">
+        <span class="step-badge">03 · Tactile Sensor Cards</span>
+        <h3>Air, Fan, Tank, Flow &amp; Door Visualizers</h3>
+        <p>Every sensor expands into a crisp card with real-time animations and calibrated readouts.</p>
+        <ul class="feature-list">
+          <li><strong>Air &amp; Fan:</strong> 270° particle gauge (<code>143 GOOD</code>), 10-minute air trend slope, and <code>AUTO</code> / <code>MANUAL</code> relay control.</li>
+          <li><strong>Water &amp; Door:</strong> Wave tank level (<code>100% WET</code>), tap flow animation (<code>3.09 L/min</code> active vs. <code>0.00 L/min</code> idle), and HC-SR04 door cycle counter.</li>
+        </ul>
+      </div>
+      <div class="visual-frame dual-shot">
+        <img src="images/ui/09_air_quality_gauge.png" alt="Air Quality 143 GOOD">
+        <img src="images/ui/11_water_flow_active.png" alt="Water Flow Active 3.09 L/min">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="insights">
+  <div class="sec-head">
+    <h2>Edge Analytics, Daily Report &amp; Insights (Core Objective)</h2>
+    <p>Computed in the browser from 288 five-minute buckets and MicroSD logs—delivering correlations, peak traffic heatmaps, water-per-entry metrics, cleaning audits, and printable daily reports.</p>
+  </div>
+
+  <div class="insights-grid">
+    <div class="insight-card">
+      <img src="images/ui/14_insights_entries_vs_air.png" alt="Entries vs Air Correlation">
+      <div>
+        <h4>Entries vs. Air Index Correlation</h4>
+        <p>Evaluates Pearson correlation ($r$) across 0–15 minute lags to quantify how entries affect air quality and support adaptive cleaning intervals.</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <img src="images/ui/15_insights_busy_hours.png" alt="Busy Hours Heatmap">
+      <div>
+        <h4>Weekday × Hour Traffic Heatmap</h4>
+        <p>7×24 occupancy matrix identifying peak hours (e.g., <code>Fri 16:00</code>) and total recorded entries.</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <img src="images/ui/16_insights_entries_vs_water.png" alt="Entries vs Water Use">
+      <div>
+        <h4>Water Per Entry &amp; Leak Detection</h4>
+        <p>Tracks litres per entry (<code>0.46 L/entry</code>) and detects sustained flow when no entries occur.</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <img src="images/ui/17_insights_fan_effectiveness.png" alt="Fan Effectiveness">
+      <div>
+        <h4>Exhaust Fan Effectiveness</h4>
+        <p>Compares 5-minute air index change with the exhaust fan ON vs. OFF and reports 24-hour fan duty cycle.</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <img src="images/ui/18_insights_cleaning_history.png" alt="Cleaning History">
+      <div>
+        <h4>Before &amp; After Cleaning Audit</h4>
+        <p>Logs cleaning events with entries since last clean and relative air index change 5 minutes after cleaning.</p>
+      </div>
+    </div>
+    <div class="insight-card">
+      <img src="images/ui/19b_insights_daily_report.png" alt="Printable Restroom Daily Report">
+      <div>
+        <h4>Printable Restroom Daily Report</h4>
+        <p>Generates a clean summary report covering entries, peak hour, air avg/max, water used, fan duty, cleanliness score, and cleans today.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="verify">
+  <div class="sec-head">
+    <h2>12-Step Interactive Hardware Verification Wizard &amp; Calibration</h2>
+    <p>Walks through each subsystem step by step with live pass/fail status, circuit icons, interactive 18s flow / door captures, and a final summary report.</p>
+  </div>
+
+  <div class="wizard-strip">
+    <div class="wiz-item"><img src="images/ui/20_verify_step1_gateway.png" alt="Step 1 Gateway"><span>Step 1 · ESP8266</span></div>
+    <div class="wiz-item"><img src="images/ui/21_verify_step2_uart.png" alt="Step 2 UART"><span>Step 2 · UART Link</span></div>
+    <div class="wiz-item"><img src="images/ui/22_verify_step3_microsd.png" alt="Step 3 MicroSD"><span>Step 3 · MicroSD</span></div>
+    <div class="wiz-item"><img src="images/ui/23_verify_step4_ds3231_rtc.png" alt="Step 4 RTC"><span>Step 4 · DS3231 RTC</span></div>
+    <div class="wiz-item"><img src="images/ui/24_verify_step5_mq135_slider.png" alt="Step 5 MQ-135"><span>Step 5 · MQ-135</span></div>
+    <div class="wiz-item"><img src="images/ui/25_verify_step6_water_probe.png" alt="Step 6 Water"><span>Step 6 · Water Probe</span></div>
+    <div class="wiz-item"><img src="images/ui/26_verify_step7_hcsr04.png" alt="Step 7 Ultrasonic"><span>Step 7 · HC-SR04</span></div>
+    <div class="wiz-item"><img src="images/ui/27_verify_step8_flow_test.png" alt="Step 8 Flow Test"><span>Step 8 · Flow 18s Test</span></div>
+    <div class="wiz-item"><img src="images/ui/28_verify_step9_people_counter.png" alt="Step 9 People"><span>Step 9 · People Count</span></div>
+    <div class="wiz-item"><img src="images/ui/29_verify_step10_door_closed.png" alt="Step 10 Door Closed"><span>Step 10 · Door Closed</span></div>
+    <div class="wiz-item"><img src="images/ui/30_verify_step11_door_open.png" alt="Step 11 Door Open"><span>Step 11 · Door Open</span></div>
+    <div class="wiz-item"><img src="images/ui/31_verify_step12_report.png" alt="Step 12 Report"><span>Step 12 · Report</span></div>
+  </div>
+
+  <div class="showcase-card" style="margin-top:28px;">
+    <div class="showcase-text">
+      <span class="step-badge">Calibration &amp; MicroSD Data Tabs</span>
+      <h3>Cleaning Rules, Sensor Calibration &amp; 8.3 CSV Exports</h3>
+      <p>Configure cleaning entry/minute thresholds and adaptive tightening on the <strong>Calibrate</strong> tab, and download date-filtered CSV logs or inspect live UART telemetry on the <strong>Data</strong> tab.</p>
+      <ul class="feature-list">
+        <li><strong>Persistent EEPROM &amp; MicroSD Storage:</strong> Saves calibration and cleaning rules across reboots while logging 8.3 CSV files.</li>
+        <li><strong>Live Telemetry Stream:</strong> Inspects raw CRC-8 frames (<code>T,2,...</code>) and SD frame statistics in real time.</li>
+      </ul>
+    </div>
+    <div class="visual-frame dual-shot">
+      <img src="images/ui/32_calibrate_tab_full.png" alt="Calibrate Tab Cleaning Rule and Sensors">
+      <img src="images/ui/18b_data_sd_export.png" alt="Data Tab MicroSD CSV Export">
+    </div>
+  </div>
+</section>
+
+<section id="prototype">
+  <div class="sec-head">
+    <h2>Original Physical Prototype &amp; CAD Design</h2>
+    <p>Tabletop lab enclosure (<code>320 × 180 × 150 mm</code>) with hinged door, top LCD cutout slot (tested separately on the I2C bench), side-mounted water flow sensor, water probe in test cup, and rear exhaust fan + dual-MCU electronics.</p>
+  </div>
+
+  <div class="visual-frame" style="background:#fff;padding:16px;">
+    <img src="images/hardware/01_cad_blueprint.png" alt="Restroom Intelligence CAD Blueprint" style="max-height:680px;">
+  </div>
+
+  <div class="proto-grid">
+    <div class="proto-card">
+      <img src="images/hardware/02_front_enclosure.jpg" alt="Front Enclosure with Door and LCD Slot">
+      <h4>Front Enclosure &amp; Hinged Door</h4>
+      <p>Physical enclosure with hinged door and top cutout slot for the 16×2 I2C LCD display.</p>
+    </div>
+    <div class="proto-card">
+      <img src="images/hardware/04_door_entry_open.jpg" alt="Door Entry Simulation">
+      <h4>Door &amp; Proximity Testing</h4>
+      <p>Door swing and ultrasonic distance capture for entry counting and door cycle estimation.</p>
+    </div>
+    <div class="proto-card">
+      <img src="images/hardware/05_rear_electronics_fan.jpg" alt="Rear Electronics and Exhaust Fan">
+      <h4>Rear Electronics &amp; Fan</h4>
+      <p>Sunon exhaust fan, relay module, breadboard, Arduino UNO, and NodeMCU ESP8266.</p>
+    </div>
+    <div class="proto-card">
+      <img src="images/hardware/06_side_flow_sensor.jpg" alt="Side Mounted Flow Sensor">
+      <h4>Side-Mounted Flow Sensor</h4>
+      <p>Hall-effect flow sensor mounted on the side wall wired to Arduino interrupt pin <code>D3</code>.</p>
+    </div>
+    <div class="proto-card">
+      <img src="images/hardware/07_water_level_probe.jpg" alt="Water Level Probe Test Cup">
+      <h4>Water Level Probe Test</h4>
+      <p>Water probe tested in a reservoir cup for dry/wet calibration on analog pin <code>A1</code>.</p>
+    </div>
+    <div class="proto-card">
+      <img src="images/hardware/08_lcd_i2c_bench_test.jpg" alt="16x2 I2C LCD and DS3231 Bench Test">
+      <h4>16×2 I2C LCD &amp; RTC Bench Test</h4>
+      <p>Bench test of the <code>JHD 162A</code> I2C LCD and DS3231 RTC module (rotated upright).</p>
+    </div>
+  </div>
+</section>
+
+<section id="architecture">
+  <div class="sec-head">
+    <h2>Dual-MCU Architecture &amp; Level Shifting</h2>
+    <p>Deterministic ATmega328P control paired with ESP8266 Wi-Fi, MicroSD logging, and analytics.</p>
+  </div>
+  <div class="visual-frame" style="background:#fff;padding:16px;margin-bottom:24px;">
+    <img src="diagrams/architecture.svg" alt="Dual-MCU Architecture Diagram">
+  </div>
+  <div class="visual-frame" style="background:#fff;padding:16px;">
+    <img src="diagrams/connection_diagram.svg" alt="Complete Hardware Connection Diagram" style="margin-bottom:18px;">
+    <img src="diagrams/voltage_divider.svg" alt="5V to 3.3V Logic Voltage Divider">
+  </div>
+</section>
+
+<section id="protocol">
+  <div class="dark-band">
+    <h2>UART v2 Reliable Framing Protocol</h2>
+    <p>Every telemetry frame at 9600 baud includes a sequence number and CRC-8 (polynomial <code>0x07</code>), with ESP8266 <code>PACKET_ACK</code> and UNO retry logic.</p>
+    <div class="code-pill">
+      T,2,&lt;seq&gt;,&lt;YYYY-MM-DD HH:MM:SS&gt;,&lt;airRaw&gt;,&lt;airStatus&gt;,&lt;people&gt;,&lt;waterRaw&gt;,&lt;waterAvail&gt;,&lt;waterPct&gt;,&lt;distCm&gt;,&lt;flowLpm&gt;,&lt;totalL&gt;,&lt;fanOn&gt;,&lt;mode&gt;,&lt;rtcOK&gt;,&lt;faultBits&gt;,&lt;faultText&gt;,&lt;CRC8&gt;
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 mrQhere · Restroom Intelligence · Microprocessor Lab Project Repository · MIT License
+</footer>
+
+</body>
+</html>

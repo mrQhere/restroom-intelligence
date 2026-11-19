@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 380" width="920" height="380">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8f9fc"/>
+      <stop offset="100%" stop-color="#eef1f8"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#007aff"/>
+      <stop offset="100%" stop-color="#5856d6"/>
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#34c759"/>
+      <stop offset="100%" stop-color="#00c7be"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.07"/>
+    </filter>
+  </defs>
+  <rect width="920" height="380" rx="24" fill="url(#bg)"/>
+  <text x="460" y="42" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" font-size="20" font-weight="700" fill="#1c1c1e" text-anchor="middle">System Architecture &amp; Dual-MCU Telemetry Pipeline</text>
+  <text x="460" y="64" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" font-size="13" fill="#6e6e73" text-anchor="middle">Real-Time Sensing (ATmega328P) + Edge Analytics, MicroSD &amp; Web Server (ESP8266)</text>
+  <rect x="36" y="96" width="230" height="240" rx="20" fill="#fff" filter="url(#shadow)"/>
+  <rect x="36" y="96" width="230" height="8" rx="4" fill="#ff9500"/>
+  <text x="151" y="130" font-family="-apple-system, sans-serif" font-size="15" font-weight="700" fill="#1c1c1e" text-anchor="middle">Field Sensors &amp; I/O</text>
+  <g font-family="-apple-system, sans-serif" font-size="12" fill="#3a3a3c">
+    <text x="56" y="160">• MQ-135 Gas Sensor (A0)</text>
+    <text x="56" y="185">• Water Level Probe (A1)</text>
+    <text x="56" y="210">• ZJ-S201 Flow Hall (D3 INT)</text>
+    <text x="56" y="235">• HC-SR04 Ultrasonic (D5/D6)</text>
+    <text x="56" y="260">• DS3231 RTC + 16x2 LCD (I2C)</text>
+    <text x="56" y="285">• Exhaust Relay &amp; Switch (D4/D9)</text>
+  </g>
+  <path d="M274 216 H328" stroke="#007aff" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="328,210 340,216 328,222" fill="#007aff"/>
+  <text x="307" y="204" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#007aff" text-anchor="middle">ADC/I2C</text>
+  <rect x="346" y="96" width="228" height="240" rx="20" fill="#fff" filter="url(#shadow)"/>
+  <rect x="346" y="96" width="228" height="8" rx="4" fill="url(#blueGrad)"/>
+  <text x="460" y="130" font-family="-apple-system, sans-serif" font-size="15" font-weight="700" fill="#1c1c1e" text-anchor="middle">Arduino UNO (ATmega328P)</text>
+  <text x="460" y="148" font-family="-apple-system, sans-serif" font-size="11" fill="#6e6e73" text-anchor="middle">5V Deterministic Controller</text>
+  <g font-family="-apple-system, sans-serif" font-size="12" fill="#3a3a3c">
+    <text x="366" y="178">• Boot Self-Check &amp; Fault Bits</text>
+    <text x="366" y="203">• EEPROM Calibration Storage</text>
+    <text x="366" y="228">• Failsafe Auto-Ventilation</text>
+    <text x="366" y="253">• Fixed 16x2 Live LCD Display</text>
+    <text x="366" y="278">• UART v2 + CRC-8 (0x07)</text>
+    <text x="366" y="303">• 3x Retry on Missing ACK</text>
+  </g>
+  <path d="M582 216 H648" stroke="#34c759" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="648,210 660,216 648,222" fill="#34c759"/>
+  <text x="621" y="196" font-family="-apple-system, sans-serif" font-size="10.5" font-weight="700" fill="#34c759" text-anchor="middle">UART 9600</text>
+  <text x="621" y="236" font-family="-apple-system, sans-serif" font-size="10" fill="#6e6e73" text-anchor="middle">1kΩ / 2.2kΩ Div</text>
+  <rect x="666" y="96" width="218" height="240" rx="20" fill="#fff" filter="url(#shadow)"/>
+  <rect x="666" y="96" width="218" height="8" rx="4" fill="url(#tealGrad)"/>
+  <text x="775" y="130" font-family="-apple-system, sans-serif" font-size="15" font-weight="700" fill="#1c1c1e" text-anchor="middle">NodeMCU (ESP8266)</text>
+  <text x="775" y="148" font-family="-apple-system, sans-serif" font-size="11" fill="#6e6e73" text-anchor="middle">3.3V Wi-Fi &amp; Edge Gateway</text>
+  <g font-family="-apple-system, sans-serif" font-size="12" fill="#3a3a3c">
+    <text x="684" y="178">• SoftAP "Restroom-Monitor"</text>
+    <text x="684" y="203">• MicroSD 8.3 CSV Logger</text>
+    <text x="684" y="228">• 0–100 Cleanliness Score</text>
+    <text x="684" y="253">• 24h 5-Min Bucket Analytics</text>
+    <text x="684" y="278">• 12-Step Hardware Wizard</text>
+    <text x="684" y="303">• Zero-CDN iOS Web Dashboard</text>
+  </g>
+</svg>
