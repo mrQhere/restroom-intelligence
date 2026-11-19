@@ -102,7 +102,7 @@
     background: var(--surface-alt); border-radius: 22px; padding: 18px;
     border: 1px solid rgba(0,0,0,0.06); text-align: center;
   }
-  .visual-frame img {
+  .visual-frame img, .visual-frame video {
     max-width: 100%; max-height: 460px; width: auto; height: auto;
     border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.12);
     display: inline-block;
@@ -110,7 +110,7 @@
   .dual-shot {
     display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center;
   }
-  .dual-shot img { width: 100%; max-height: 360px; object-fit: contain; }
+  .dual-shot img, .dual-shot video { width: 100%; max-height: 360px; object-fit: contain; }
 
   .insights-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 22px;
@@ -177,6 +177,7 @@
       <a href="#verify">12-Step Wizard</a>
       <a href="#prototype">Physical Prototype</a>
       <a href="#architecture">Architecture</a>
+      <a href="https://github.com/mrQhere/restroom-intelligence" target="_blank">GitHub ↗</a>
     </div>
   </div>
 </nav>
@@ -212,7 +213,10 @@
         </ul>
       </div>
       <div class="visual-frame dual-shot">
-        <img src="images/ui/01_loading_boot.png" alt="Dual-MCU Boot Loading Screen">
+        <video autoplay loop muted playsinline style="background:#f2f2f7;">
+          <source src="images/ui/00_boot_animation.mp4" type="video/mp4">
+          <img src="images/ui/00_boot_animation.gif" alt="Dual-MCU Boot Loading Screen">
+        </video>
         <img src="images/ui/02_system_calibrated.png" alt="System Calibrated Modal">
       </div>
     </div>
@@ -262,7 +266,7 @@
       <img src="images/ui/14_insights_entries_vs_air.png" alt="Entries vs Air Correlation">
       <div>
         <h4>Entries vs. Air Index Correlation</h4>
-        <p>Evaluates Pearson correlation ($r$) across 0–15 minute lags to quantify how entries affect air quality and support adaptive cleaning intervals.</p>
+        <p>Evaluates Pearson correlation (r) across 0–15 minute lags to quantify how entries affect air quality and support adaptive cleaning intervals.</p>
       </div>
     </div>
     <div class="insight-card">
@@ -380,7 +384,7 @@
     <div class="proto-card">
       <img src="images/hardware/08_lcd_i2c_bench_test.jpg" alt="16x2 I2C LCD and DS3231 Bench Test">
       <h4>16×2 I2C LCD &amp; RTC Bench Test</h4>
-      <p>Bench test of the <code>JHD 162A</code> I2C LCD and DS3231 RTC module (rotated upright).</p>
+      <p>Bench test of the <code>JHD 162A</code> I2C LCD and DS3231 RTC module.</p>
     </div>
   </div>
 </section>

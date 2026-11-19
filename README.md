@@ -22,12 +22,12 @@ The ESP8266 maintains **288 five-minute rolling buckets** and logs persistent 8.
 
 <table>
   <tr>
-    <td align="center" width="33%"><img src="docs/images/ui/14_insights_entries_vs_air.png" height="270" alt="Entries vs Air"><br><sub><b>Entries vs. Air Index</b><br>Pearson correlation (r) & lag analysis</sub></td>
+    <td align="center" width="33%"><img src="docs/images/ui/14_insights_entries_vs_air.png" height="270" alt="Entries vs Air"><br><sub><b>Entries vs. Air Index</b><br>Pearson correlation (r) &amp; lag analysis</sub></td>
     <td align="center" width="33%"><img src="docs/images/ui/15_insights_busy_hours.png" height="270" alt="Busy Hours Heatmap"><br><sub><b>Weekday × Hour Heatmap</b><br>Peak traffic slot detection (Fri 16:00)</sub></td>
-    <td align="center" width="33%"><img src="docs/images/ui/16_insights_entries_vs_water.png" height="270" alt="Entries vs Water Use"><br><sub><b>Entries vs. Water Use</b><br>0.46 L/entry & idle leak detection</sub></td>
+    <td align="center" width="33%"><img src="docs/images/ui/16_insights_entries_vs_water.png" height="270" alt="Entries vs Water Use"><br><sub><b>Entries vs. Water Use</b><br>0.46 L/entry &amp; idle leak detection</sub></td>
   </tr>
   <tr>
-    <td align="center" width="33%"><img src="docs/images/ui/17_insights_fan_effectiveness.png" height="270" alt="Fan Effectiveness"><br><sub><b>Exhaust Fan Effectiveness</b><br>5-min air recovery & 24h duty cycle</sub></td>
+    <td align="center" width="33%"><img src="docs/images/ui/17_insights_fan_effectiveness.png" height="270" alt="Fan Effectiveness"><br><sub><b>Exhaust Fan Effectiveness</b><br>5-min air recovery &amp; 24h duty cycle</sub></td>
     <td align="center" width="33%"><img src="docs/images/ui/18_insights_cleaning_history.png" height="270" alt="Cleaning History"><br><sub><b>Cleaning Audit Log</b><br>Air index before → 5 min after clean</sub></td>
     <td align="center" width="33%"><img src="docs/images/ui/19_raw_uart_telemetry.png" height="270" alt="Raw UART Stream"><br><sub><b>Live CRC-8 UART Stream</b><br>Real-time T,2,... telemetry inspector</sub></td>
   </tr>
@@ -35,9 +35,9 @@ The ESP8266 maintains **288 five-minute rolling buckets** and logs persistent 8.
 
 <table>
   <tr>
-    <td align="center" width="33%"><img src="docs/images/ui/19c_insights_overview_window.png" height="360" alt="Insights Overview"><br><sub><b>Insights Overview & Time Window</b></sub></td>
+    <td align="center" width="33%"><img src="docs/images/ui/19c_insights_overview_window.png" height="360" alt="Insights Overview"><br><sub><b>Insights Overview &amp; Time Window</b></sub></td>
     <td align="center" width="33%"><img src="docs/images/ui/19b_insights_daily_report.png" height="360" alt="Printable Daily Report"><br><sub><b>Printable Restroom Daily Report</b></sub></td>
-    <td align="center" width="33%"><img src="docs/images/ui/18b_data_sd_export.png" height="360" alt="MicroSD CSV Export"><br><sub><b>MicroSD 8.3 CSV & Date Export</b></sub></td>
+    <td align="center" width="33%"><img src="docs/images/ui/18b_data_sd_export.png" height="360" alt="MicroSD CSV Export"><br><sub><b>MicroSD 8.3 CSV &amp; Date Export</b></sub></td>
   </tr>
 </table>
 
@@ -50,7 +50,7 @@ Joining Wi-Fi **`Restroom-Monitor`** (Password: **`restroom123`**) launches an a
 
 <table>
   <tr>
-    <td align="center" width="50%"><img src="docs/images/ui/01_loading_boot.png" height="380" alt="Loading Screen"><br><sub><b>Dual-MCU Boot & Handshake</b></sub></td>
+    <td align="center" width="50%"><img src="docs/images/ui/00_boot_animation.gif" height="380" alt="Live Dual-MCU Boot Animation"><br><sub><b>Live Dual-MCU Boot &amp; UART Handshake (Looping)</b></sub></td>
     <td align="center" width="50%"><img src="docs/images/ui/02_system_calibrated.png" height="380" alt="System Calibrated"><br><sub><b>3-Step Guided Calibration Complete</b></sub></td>
   </tr>
 </table>
@@ -86,7 +86,7 @@ The Home screen computes a weighted **`0–100` Cleanliness Score** (40% Entries
     <td align="center" width="25%"><img src="docs/images/ui/10_water_tank_wet.png" height="210" alt="Water Tank"><br><sub><b>Water Tank (100% WET)</b></sub></td>
     <td align="center" width="25%"><img src="docs/images/ui/11_water_flow_active.png" height="210" alt="Water Flow Active"><br><sub><b>Flow Active (3.09 L/min)</b></sub></td>
     <td align="center" width="25%"><img src="docs/images/ui/12_water_flow_idle.png" height="210" alt="Water Flow Idle"><br><sub><b>Flow Idle (0.00 L/min)</b></sub></td>
-    <td align="center" width="25%"><img src="docs/images/ui/13_door_people_counter.png" height="210" alt="Door People Counter"><br><sub><b>Door & People Counter</b></sub></td>
+    <td align="center" width="25%"><img src="docs/images/ui/13_door_people_counter.png" height="210" alt="Door People Counter"><br><sub><b>Door &amp; People Counter</b></sub></td>
   </tr>
 </table>
 
@@ -99,7 +99,7 @@ The Home screen computes a weighted **`0–100` Cleanliness Score** (40% Entries
     <td align="center" width="25%"><img src="docs/images/ui/23_verify_step4_ds3231_rtc.png" height="270" alt="Step 4"><br><sub><b>4. DS3231 Clock</b></sub></td>
   </tr>
   <tr>
-    <td align="center" width="25%"><img src="docs/images/ui/24_verify_step5_mq135_slider.png" height="270" alt="Step 5"><br><sub><b>5. MQ-135 & Slider</b></sub></td>
+    <td align="center" width="25%"><img src="docs/images/ui/24_verify_step5_mq135_slider.png" height="270" alt="Step 5"><br><sub><b>5. MQ-135 &amp; Slider</b></sub></td>
     <td align="center" width="25%"><img src="docs/images/ui/25_verify_step6_water_probe.png" height="270" alt="Step 6"><br><sub><b>6. Water Probe</b></sub></td>
     <td align="center" width="25%"><img src="docs/images/ui/26_verify_step7_hcsr04.png" height="270" alt="Step 7"><br><sub><b>7. HC-SR04 Ultrasonic</b></sub></td>
     <td align="center" width="25%"><img src="docs/images/ui/27_verify_step8_flow_test.png" height="270" alt="Step 8"><br><sub><b>8. 18s Flow Test</b></sub></td>
@@ -114,7 +114,7 @@ The Home screen computes a weighted **`0–100` Cleanliness Score** (40% Entries
 
 <p align="center">
   <img src="docs/images/ui/32_calibrate_tab_full.png" height="420" alt="Calibrate Tab">
-  <br><sub><b>Calibrate Tab — Adaptive Cleaning Rules & EEPROM Sensor Calibration</b></sub>
+  <br><sub><b>Calibrate Tab — Adaptive Cleaning Rules &amp; EEPROM Sensor Calibration</b></sub>
 </p>
 
 ---
@@ -129,12 +129,12 @@ Tabletop lab enclosure (`320 × 180 × 150 mm`) with a hinged door, top cutout s
 
 <table>
   <tr>
-    <td align="center" width="33%"><img src="docs/images/hardware/02_front_enclosure.jpg" height="240" alt="Front Enclosure"><br><sub><b>Front Enclosure & LCD Slot</b></sub></td>
+    <td align="center" width="33%"><img src="docs/images/hardware/02_front_enclosure.jpg" height="240" alt="Front Enclosure"><br><sub><b>Front Enclosure &amp; LCD Slot</b></sub></td>
     <td align="center" width="33%"><img src="docs/images/hardware/03_door_entry_closed.jpg" height="240" alt="Door Closed"><br><sub><b>Door Closed Proximity Test</b></sub></td>
     <td align="center" width="33%"><img src="docs/images/hardware/04_door_entry_open.jpg" height="240" alt="Door Open"><br><sub><b>Door Open Entry Test</b></sub></td>
   </tr>
   <tr>
-    <td align="center" width="33%"><img src="docs/images/hardware/05_rear_electronics_fan.jpg" height="240" alt="Rear Electronics"><br><sub><b>Rear Electronics & Exhaust Fan</b></sub></td>
+    <td align="center" width="33%"><img src="docs/images/hardware/05_rear_electronics_fan.jpg" height="240" alt="Rear Electronics"><br><sub><b>Rear Electronics &amp; Exhaust Fan</b></sub></td>
     <td align="center" width="33%"><img src="docs/images/hardware/06_side_flow_sensor.jpg" height="240" alt="Side Flow Sensor"><br><sub><b>Side-Mounted Flow Sensor</b></sub></td>
     <td align="center" width="33%"><img src="docs/images/hardware/07_water_level_probe.jpg" height="240" alt="Water Probe Cup"><br><sub><b>Water Probe Calibration Cup</b></sub></td>
   </tr>
@@ -142,7 +142,7 @@ Tabletop lab enclosure (`320 × 180 × 150 mm`) with a hinged door, top cutout s
 
 <p align="center">
   <img src="docs/images/hardware/08_lcd_i2c_bench_test.jpg" height="260" alt="16x2 I2C LCD Bench Test">
-  <br><sub><b>16×2 I2C LCD (JHD 162A) & DS3231 RTC Bench Test</b></sub>
+  <br><sub><b>16×2 I2C LCD (JHD 162A) &amp; DS3231 RTC Bench Test</b></sub>
 </p>
 
 ---
